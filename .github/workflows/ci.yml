@@ -1,4 +1,3 @@
-@"
 name: CloudCost Guardian CI
 
 on:
@@ -10,13 +9,10 @@ on:
       - main
 
 jobs:
-
   test:
-
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -38,4 +34,3 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t cloudcost-guardian:ci .
-"@ | Out-File -FilePath .\.github\workflows\ci.yml -Encoding ascii
