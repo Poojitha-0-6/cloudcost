@@ -1,0 +1,425 @@
+{% extends "base.html" %}
+
+{% block title %}
+Overview | CloudCost Guardian
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <span class="eyebrow">
+            CLOUD OPERATIONS
+        </span>
+
+        <h1>
+            Resource Intelligence
+        </h1>
+
+        <p>
+            Multi-factor analysis of cloud resource efficiency.
+        </p>
+
+    </div>
+
+    <div class="monitoring-status">
+
+        <span class="status-dot"></span>
+
+        Live Analysis
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     SUMMARY CARDS
+     ========================================================= -->
+
+<div class="resource-summary">
+
+    <div class="resource-stat-card">
+
+        <div class="stat-card-icon">
+            #
+        </div>
+
+        <div>
+
+            <span>
+                Total Resources
+            </span>
+
+            <strong id="overviewTotal">
+                --
+            </strong>
+
+            <small>
+                Monitored resources
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="resource-stat-card">
+
+        <div class="stat-card-icon danger">
+            !
+        </div>
+
+        <div>
+
+            <span>
+                High Risk
+            </span>
+
+            <strong id="overviewHighRisk">
+                --
+            </strong>
+
+            <small>
+                Requires attention
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="resource-stat-card">
+
+        <div class="stat-card-icon warning">
+            %
+        </div>
+
+        <div>
+
+            <span>
+                Average Waste
+            </span>
+
+            <strong id="overviewAverageScore">
+                --
+            </strong>
+
+            <small>
+                Across monitored resources
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="resource-stat-card">
+
+        <div class="stat-card-icon warning">
+            !
+        </div>
+
+        <div>
+
+            <span>
+                Underutilized
+            </span>
+
+            <strong id="overviewUnderutilized">
+                --
+            </strong>
+
+            <small>
+                Optimization candidates
+            </small>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     RESOURCE HEALTH
+     ========================================================= -->
+
+<section class="resource-inventory">
+
+    <div class="inventory-header">
+
+        <div>
+
+            <span class="eyebrow">
+                RESOURCE INTELLIGENCE
+            </span>
+
+            <h2>
+                Resource Health
+            </h2>
+
+            <p>
+                Current health and utilization of monitored resources.
+            </p>
+
+        </div>
+
+        <a
+            href="/resources"
+            class="page-button secondary"
+        >
+            View all resources →
+        </a>
+
+    </div>
+
+
+    <div class="resource-table-wrapper">
+
+        <table class="resource-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Resource
+                    </th>
+
+                    <th>
+                        CPU
+                    </th>
+
+                    <th>
+                        Activity
+                    </th>
+
+                    <th>
+                        Waste Score
+                    </th>
+
+                    <th>
+                        Classification
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="overviewResourceTable">
+
+                <tr>
+
+                    <td
+                        colspan="5"
+                        class="resource-loading"
+                    >
+                        Loading resource intelligence...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     DECISION LAYER
+     ========================================================= -->
+
+<section class="overview-information-grid">
+
+    <div class="overview-info-card">
+
+        <div class="overview-info-icon ai">
+            AI
+        </div>
+
+        <span class="eyebrow">
+            DECISION LAYER
+        </span>
+
+        <h2>
+            Multi-factor analysis
+        </h2>
+
+        <p>
+            CloudCost Guardian combines CPU, network activity,
+            application activity and runtime instead of relying
+            on a single utilization threshold.
+        </p>
+
+    </div>
+
+
+    <div class="overview-info-card">
+
+        <div class="overview-info-icon cost">
+            $
+        </div>
+
+        <span class="eyebrow">
+            COST OPTIMIZATION
+        </span>
+
+        <h2>
+            Recommendation-first approach
+        </h2>
+
+        <p>
+            The system identifies potential waste and recommends
+            actions while keeping final resource decisions under
+            human control.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     QUICK LINKS
+     ========================================================= -->
+
+<section class="overview-quick-links">
+
+    <div>
+
+        <span class="eyebrow">
+            QUICK ACCESS
+        </span>
+
+        <h2>
+            Explore CloudCost Guardian
+        </h2>
+
+    </div>
+
+
+    <div class="quick-link-grid">
+
+        <a
+            href="/resources"
+            class="quick-link-card"
+        >
+
+            <span class="quick-link-number">
+                01
+            </span>
+
+            <div>
+
+                <strong>
+                    Resources
+                </strong>
+
+                <small>
+                    Inspect individual resources
+                </small>
+
+            </div>
+
+            <span>
+                →
+            </span>
+
+        </a>
+
+
+        <a
+            href="/analytics"
+            class="quick-link-card"
+        >
+
+            <span class="quick-link-number">
+                02
+            </span>
+
+            <div>
+
+                <strong>
+                    Analytics
+                </strong>
+
+                <small>
+                    Analyze utilization patterns
+                </small>
+
+            </div>
+
+            <span>
+                →
+            </span>
+
+        </a>
+
+
+        <a
+            href="/recommendations"
+            class="quick-link-card"
+        >
+
+            <span class="quick-link-number">
+                03
+            </span>
+
+            <div>
+
+                <strong>
+                    Recommendations
+                </strong>
+
+                <small>
+                    Review optimization actions
+                </small>
+
+            </div>
+
+            <span>
+                →
+            </span>
+
+        </a>
+
+
+        <a
+            href="/history"
+            class="quick-link-card"
+        >
+
+            <span class="quick-link-number">
+                04
+            </span>
+
+            <div>
+
+                <strong>
+                    History
+                </strong>
+
+                <small>
+                    Review historical observations
+                </small>
+
+            </div>
+
+            <span>
+                →
+            </span>
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

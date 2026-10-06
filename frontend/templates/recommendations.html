@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block title %}
+Recommendations | CloudCost Guardian
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <span class="eyebrow">
+            OPTIMIZATION CENTER
+        </span>
+
+        <h1>
+            Recommendations
+        </h1>
+
+        <p>
+            Review explainable recommendations generated
+            from resource utilization and Waste Score analysis.
+        </p>
+
+    </div>
+
+    <button
+        class="page-button primary"
+        onclick="loadRecommendations()"
+    >
+        ↻ Refresh
+    </button>
+
+</div>
+
+
+<!-- SUMMARY -->
+
+<div class="recommendation-summary">
+
+    <div class="recommendation-summary-card">
+
+        <span>
+            Total Recommendations
+        </span>
+
+        <strong id="recommendationTotal">
+            --
+        </strong>
+
+        <small>
+            Current resources
+        </small>
+
+    </div>
+
+
+    <div class="recommendation-summary-card">
+
+        <span>
+            Critical
+        </span>
+
+        <strong id="recommendationCritical">
+            --
+        </strong>
+
+        <small>
+            Immediate investigation
+        </small>
+
+    </div>
+
+
+    <div class="recommendation-summary-card">
+
+        <span>
+            High Priority
+        </span>
+
+        <strong id="recommendationHigh">
+            --
+        </strong>
+
+        <small>
+            Optimization candidates
+        </small>
+
+    </div>
+
+
+    <div class="recommendation-summary-card">
+
+        <span>
+            Monitoring
+        </span>
+
+        <strong id="recommendationMedium">
+            --
+        </strong>
+
+        <small>
+            Continue observation
+        </small>
+
+    </div>
+
+</div>
+
+
+<!-- ACTION BAR -->
+
+<div class="recommendation-action-bar">
+
+    <div>
+
+        <span class="eyebrow">
+            DECISION SUPPORT
+        </span>
+
+        <h2>
+            Optimization Opportunities
+        </h2>
+
+        <p>
+            Recommendations are advisory. CloudCost Guardian
+            does not automatically terminate or modify resources.
+        </p>
+
+    </div>
+
+
+    <select
+        id="recommendationFilter"
+        class="page-select"
+        onchange="filterRecommendations()"
+    >
+
+        <option value="ALL">
+            All priorities
+        </option>
+
+        <option value="CRITICAL">
+            Critical
+        </option>
+
+        <option value="HIGH">
+            High
+        </option>
+
+        <option value="MEDIUM">
+            Medium
+        </option>
+
+        <option value="LOW">
+            Low
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- RECOMMENDATIONS -->
+
+<div
+    id="recommendationGrid"
+    class="recommendation-grid"
+>
+</div>
+
+
+<!-- EMPTY -->
+
+<div
+    id="recommendationEmpty"
+    class="empty-panel"
+    style="display:none;"
+>
+
+    <div class="empty-icon">
+        ✓
+    </div>
+
+    <h3>
+        No recommendations found
+    </h3>
+
+    <p>
+        No resources currently match the selected priority.
+    </p>
+
+</div>
+
+
+<!-- SAFETY NOTE -->
+
+<div class="recommendation-note">
+
+    <div class="help-icon">
+        i
+    </div>
+
+    <div>
+
+        <strong>
+            Recommendation-first approach
+        </strong>
+
+        <p>
+            CloudCost Guardian provides explainable suggestions
+            so that a user can verify workload requirements before
+            making any infrastructure change.
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

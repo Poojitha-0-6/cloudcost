@@ -1,0 +1,14 @@
+services:
+  cloudcost-guardian:
+    build:
+      context: .
+    image: cloudcost-guardian:phase8
+    container_name: cloudcost-guardian-container
+    ports:
+      - "5000:5000"
+    volumes:
+      - cloudcost-data:/app/backend/database
+    restart: unless-stopped
+
+volumes:
+  cloudcost-data:

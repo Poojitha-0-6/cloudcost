@@ -1,0 +1,264 @@
+{% extends "base.html" %}
+
+{% block title %}
+History | CloudCost Guardian
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+
+        <span class="eyebrow">
+            HISTORICAL ANALYSIS
+        </span>
+
+        <h1>
+            Resource History
+        </h1>
+
+        <p>
+            Review previous observations and track how
+            resource risk has changed over time.
+        </p>
+
+    </div>
+
+    <button
+        class="page-button primary"
+        onclick="loadHistoryPage()"
+    >
+        ↻ Refresh
+    </button>
+
+</div>
+
+
+<!-- FILTER BAR -->
+
+<div class="history-filter-bar">
+
+    <div>
+
+        <span class="eyebrow">
+            RESOURCE FILTER
+        </span>
+
+        <h2>
+            Observation History
+        </h2>
+
+    </div>
+
+
+    <select
+        id="historyResourceFilter"
+        class="page-select"
+        onchange="loadHistoryPage()"
+    >
+
+        <option value="ALL">
+            All Resources
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- SUMMARY -->
+
+<div class="history-summary">
+
+    <div class="history-summary-card">
+
+        <span>
+            Observations
+        </span>
+
+        <strong id="historyObservationCount">
+            --
+        </strong>
+
+        <small>
+            Recorded analyses
+        </small>
+
+    </div>
+
+
+    <div class="history-summary-card">
+
+        <span>
+            Average Waste Score
+        </span>
+
+        <strong id="historyAverageScore">
+            --
+        </strong>
+
+        <small>
+            Across observations
+        </small>
+
+    </div>
+
+
+    <div class="history-summary-card">
+
+        <span>
+            Highest Score
+        </span>
+
+        <strong id="historyHighestScore">
+            --
+        </strong>
+
+        <small>
+            Maximum recorded risk
+        </small>
+
+    </div>
+
+
+    <div class="history-summary-card">
+
+        <span>
+            Resources Tracked
+        </span>
+
+        <strong id="historyResourceCount">
+            --
+        </strong>
+
+        <small>
+            Unique resources
+        </small>
+
+    </div>
+
+</div>
+
+
+<!-- TREND -->
+
+<section class="chart-card history-chart-card">
+
+    <div class="chart-card-header">
+
+        <div>
+
+            <span class="chart-eyebrow">
+                TREND ANALYSIS
+            </span>
+
+            <h2>
+                Waste Score Trend
+            </h2>
+
+            <p>
+                Historical Waste Score observations.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="history-chart-container">
+
+        <canvas id="historyScoreChart"></canvas>
+
+    </div>
+
+</section>
+
+
+<!-- LOG -->
+
+<section class="table-card">
+
+    <div class="table-card-header">
+
+        <div>
+
+            <span class="chart-eyebrow">
+                OBSERVATION LOG
+            </span>
+
+            <h2>
+                Historical Records
+            </h2>
+
+            <p>
+                Latest recorded resource observations.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-scroll">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Resource
+                    </th>
+
+                    <th>
+                        Time
+                    </th>
+
+                    <th>
+                        CPU
+                    </th>
+
+                    <th>
+                        Network
+                    </th>
+
+                    <th>
+                        Waste Score
+                    </th>
+
+                    <th>
+                        Classification
+                    </th>
+
+                    <th>
+                        Recommendation
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="historyTableBody">
+
+                <tr>
+
+                    <td
+                        colspan="7"
+                        class="empty-state"
+                    >
+                        Loading history...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

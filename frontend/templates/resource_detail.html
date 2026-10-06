@@ -1,0 +1,438 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resource Details | CloudCost Guardian
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+        <div class="breadcrumb">
+            <a href="/resources">Resources</a>
+            <span>›</span>
+            <span>Resource Details</span>
+        </div>
+
+        <h1 id="detailResourceTitle">
+            Resource Details
+        </h1>
+
+        <p id="detailResourceSubtitle">
+            Loading resource information...
+        </p>
+    </div>
+
+    <div class="header-actions">
+        <a href="/resources" class="page-button secondary">
+            ← Back to Resources
+        </a>
+
+        <button
+            class="page-button primary"
+            onclick="loadResourceDetail()"
+        >
+            ↻ Refresh
+        </button>
+    </div>
+
+</div>
+
+
+<!-- TOP STATUS -->
+
+<div class="detail-hero">
+
+    <div class="detail-identity">
+
+        <div class="resource-icon-large">
+            EC2
+        </div>
+
+        <div>
+
+            <span
+                id="detailClassification"
+                class="status-badge"
+            >
+                Loading
+            </span>
+
+            <h2 id="detailResourceId">
+                --
+            </h2>
+
+            <p id="detailRegion">
+                --
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="detail-score">
+
+        <span>
+            Waste Score
+        </span>
+
+        <strong id="detailWasteScore">
+            --
+        </strong>
+
+        <small id="detailRiskLevel">
+            --
+        </small>
+
+    </div>
+
+</div>
+
+
+<!-- METRICS -->
+
+<section class="detail-section">
+
+    <div class="section-heading">
+
+        <div>
+            <h2>Resource Metrics</h2>
+            <p>Current utilization signals collected by CloudCost Guardian.</p>
+        </div>
+
+    </div>
+
+
+    <div class="detail-metric-grid">
+
+        <div class="detail-metric-card">
+
+            <span>CPU Utilization</span>
+
+            <strong id="detailCpu">
+                --
+            </strong>
+
+            <div class="metric-progress">
+                <div
+                    id="detailCpuBar"
+                    class="metric-progress-fill"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="detail-metric-card">
+
+            <span>Network Activity</span>
+
+            <strong id="detailNetwork">
+                --
+            </strong>
+
+            <div class="metric-progress">
+                <div
+                    id="detailNetworkBar"
+                    class="metric-progress-fill"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="detail-metric-card">
+
+            <span>Running Time</span>
+
+            <strong id="detailRuntime">
+                --
+            </strong>
+
+            <p>hours in current observation</p>
+
+        </div>
+
+
+        <div class="detail-metric-card">
+
+            <span>Application Activity</span>
+
+            <strong id="detailActivity">
+                --
+            </strong>
+
+            <p>observed workload activity</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- RESOURCE INFORMATION -->
+
+<section class="detail-section">
+
+    <div class="section-heading">
+
+        <div>
+            <h2>Resource Information</h2>
+            <p>Basic information about this monitored resource.</p>
+        </div>
+
+    </div>
+
+
+    <div class="info-grid">
+
+        <div class="info-item">
+            <span>Resource ID</span>
+            <strong id="infoResourceId">--</strong>
+        </div>
+
+        <div class="info-item">
+            <span>Resource Type</span>
+            <strong id="infoResourceType">--</strong>
+        </div>
+
+        <div class="info-item">
+            <span>Region</span>
+            <strong id="infoRegion">--</strong>
+        </div>
+
+        <div class="info-item">
+            <span>State</span>
+            <strong id="infoState">--</strong>
+        </div>
+
+        <div class="info-item">
+            <span>Timestamp</span>
+            <strong id="infoTimestamp">--</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SCORE BREAKDOWN -->
+
+<section class="detail-section">
+
+    <div class="section-heading">
+
+        <div>
+            <h2>Waste Score Breakdown</h2>
+            <p>
+                Understand which signals contributed to the current score.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="breakdown-card">
+
+        <div class="breakdown-row">
+
+            <div class="breakdown-label">
+                <span>CPU Factor</span>
+                <strong id="cpuFactor">--</strong>
+            </div>
+
+            <div class="breakdown-track">
+                <div
+                    id="cpuFactorBar"
+                    class="breakdown-fill"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="breakdown-row">
+
+            <div class="breakdown-label">
+                <span>Network Factor</span>
+                <strong id="networkFactor">--</strong>
+            </div>
+
+            <div class="breakdown-track">
+                <div
+                    id="networkFactorBar"
+                    class="breakdown-fill"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="breakdown-row">
+
+            <div class="breakdown-label">
+                <span>Activity Factor</span>
+                <strong id="activityFactor">--</strong>
+            </div>
+
+            <div class="breakdown-track">
+                <div
+                    id="activityFactorBar"
+                    class="breakdown-fill"
+                ></div>
+            </div>
+
+        </div>
+
+
+        <div class="breakdown-row">
+
+            <div class="breakdown-label">
+                <span>Runtime Factor</span>
+                <strong id="runtimeFactor">--</strong>
+            </div>
+
+            <div class="breakdown-track">
+                <div
+                    id="runtimeFactorBar"
+                    class="breakdown-fill"
+                ></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CLASSIFICATION -->
+
+<section class="detail-section">
+
+    <div class="detail-two-column">
+
+        <div class="explanation-card">
+
+            <div class="card-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <h3>Classification</h3>
+
+                <h2 id="detailClassificationTitle">
+                    --
+                </h2>
+
+                <p id="detailClassificationDescription">
+                    --
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="recommendation-card">
+
+            <div class="recommendation-card-top">
+
+                <span class="small-label">
+                    RECOMMENDATION
+                </span>
+
+                <span
+                    id="detailRecommendationPriority"
+                    class="priority-badge"
+                >
+                    --
+                </span>
+
+            </div>
+
+            <h2 id="detailRecommendation">
+                --
+            </h2>
+
+            <p id="detailRecommendationAction">
+                --
+            </p>
+
+            <div class="recommendation-reason">
+
+                <strong>Why?</strong>
+
+                <span id="detailRecommendationReason">
+                    --
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HISTORY -->
+
+<section class="detail-section">
+
+    <div class="section-heading">
+
+        <div>
+            <h2>Resource History</h2>
+            <p>
+                Historical Waste Score observations for this resource.
+            </p>
+        </div>
+
+    </div>
+
+
+    <div class="chart-card">
+
+        <canvas id="resourceHistoryChart"></canvas>
+
+    </div>
+
+
+    <div class="table-card">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Time</th>
+                    <th>CPU</th>
+                    <th>Waste Score</th>
+                    <th>Classification</th>
+                    <th>Recommendation</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="resourceHistoryTable">
+
+                <tr>
+                    <td colspan="5" class="empty-state">
+                        Loading history...
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+{% endblock %}

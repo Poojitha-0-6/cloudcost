@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+        CloudCost Guardian
+        {% endblock %}
+    </title>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/pages.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+<div class="app-shell">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                C
+            </div>
+
+            <div>
+
+                <div class="brand-name">
+                    CloudCost
+                </div>
+
+                <div class="brand-subtitle">
+                    GUARDIAN
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a
+                href="/"
+                class="nav-item {% if active_page == 'overview' %}active{% endif %}"
+            >
+                <span>Overview</span>
+            </a>
+
+
+            <a
+                href="/resources"
+                class="nav-item {% if active_page == 'resources' %}active{% endif %}"
+            >
+                <span>Resources</span>
+            </a>
+
+
+            <a
+                href="/analytics"
+                class="nav-item {% if active_page == 'analytics' %}active{% endif %}"
+            >
+                <span>Analytics</span>
+            </a>
+
+
+            <a
+                href="/recommendations"
+                class="nav-item {% if active_page == 'recommendations' %}active{% endif %}"
+            >
+                <span>Recommendations</span>
+            </a>
+
+
+            <a
+                href="/history"
+                class="nav-item {% if active_page == 'history' %}active{% endif %}"
+            >
+                <span>History</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="connection-dot"></div>
+
+            <div>
+
+                <strong>
+                    Local Monitoring
+                </strong>
+
+                <span>
+                    Phase 7 dashboard
+                </span>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+</div>
+
+
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js"
+></script>
+
+<script
+    src="{{ url_for('static', filename='js/dashboard.js') }}"
+></script>
+
+</body>
+
+</html>

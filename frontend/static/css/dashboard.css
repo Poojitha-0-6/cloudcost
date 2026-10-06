@@ -1,0 +1,1139 @@
+:root {
+    --bg: #0b1020;
+    --surface: #11182a;
+    --surface-2: #151e32;
+    --border: #25304a;
+    --text: #eef2ff;
+    --muted: #8d99b5;
+    --accent: #7c8cff;
+    --success: #36d399;
+    --warning: #f6c85f;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    background: radial-gradient(circle at 80% 0%, #17234a 0, var(--bg) 38%);
+    color: var(--text);
+}
+
+.app-shell { min-height: 100vh; display: flex; }
+
+.sidebar {
+    width: 250px;
+    padding: 28px 18px;
+    background: rgba(9, 14, 28, .92);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.brand { display: flex; gap: 12px; align-items: center; padding: 0 10px 36px; }
+.brand-mark {
+    width: 38px; height: 38px; border-radius: 12px;
+    display: grid; place-items: center; font-weight: 800;
+    background: linear-gradient(135deg, #7c8cff, #9b7cff);
+}
+.brand-name { font-weight: 800; letter-spacing: -.4px; }
+.brand-subtitle { font-size: 10px; letter-spacing: 2px; color: var(--muted); margin-top: 2px; }
+
+nav { display: grid; gap: 7px; }
+.nav-item {
+    padding: 12px 14px; border-radius: 10px; color: var(--muted);
+    text-decoration: none; font-size: 14px; font-weight: 600;
+}
+.nav-item:hover, .nav-item.active { background: var(--surface-2); color: var(--text); }
+
+.sidebar-footer {
+    margin-top: auto; padding: 14px; border: 1px solid var(--border);
+    border-radius: 12px; display: flex; gap: 10px; align-items: center;
+    font-size: 11px;
+}
+.sidebar-footer span { display: block; color: var(--muted); margin-top: 3px; }
+.connection-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); }
+
+.main { flex: 1; padding: 42px 46px; max-width: 1500px; }
+.topbar { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; }
+.eyebrow { margin: 0 0 8px; font-size: 10px; font-weight: 800; letter-spacing: 1.8px; color: var(--accent); }
+h1 { margin: 0; font-size: 30px; letter-spacing: -.9px; }
+.muted { color: var(--muted); margin: 8px 0 0; font-size: 13px; }
+
+.live-pill {
+    border: 1px solid #285744; background: #10271f; color: #8ce9c0;
+    border-radius: 999px; padding: 9px 13px; font-size: 10px; font-weight: 800;
+}
+.live-pill span { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--success); margin-right: 7px; }
+
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0 22px; }
+.stat-card, .panel, .info-card {
+    background: rgba(17, 24, 42, .78); border: 1px solid var(--border);
+    border-radius: 16px;
+}
+.stat-card { padding: 20px; }
+.stat-card span { color: var(--muted); font-size: 12px; font-weight: 600; }
+.stat-card strong { display: block; font-size: 28px; margin: 10px 0 4px; }
+.stat-card small { color: #66728e; font-size: 11px; }
+.source-value { font-size: 22px !important; color: var(--accent); }
+
+.panel { padding: 22px; }
+.panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+.panel-header h2 { margin: 0; font-size: 18px; }
+.panel-header .eyebrow { margin-bottom: 5px; }
+
+button {
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
+    border-radius: 9px; padding: 9px 13px; cursor: pointer; font-family: inherit;
+}
+button:hover { border-color: var(--accent); }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 760px; }
+th {
+    color: #6f7c99; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 1px; text-align: left; padding: 12px;
+}
+td { padding: 15px 12px; border-top: 1px solid #202a42; font-size: 13px; }
+.resource-name { font-weight: 700; }
+.badge { padding: 5px 9px; border-radius: 999px; font-size: 10px; font-weight: 700; }
+.badge.running { background: #123328; color: #7ce0b5; }
+.badge.low { background: #332d16; color: #f2ce6b; }
+.metric { font-variant-numeric: tabular-nums; }
+
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
+.info-card { padding: 20px; display: flex; gap: 15px; }
+.card-icon {
+    width: 34px; height: 34px; border-radius: 10px; background: #202a45;
+    display: grid; place-items: center; color: var(--accent); font-size: 11px; font-weight: 800;
+    flex: 0 0 auto;
+}
+.info-card h3 { margin: 0 0 7px; font-size: 14px; }
+.info-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+
+@media (max-width: 900px) {
+    .sidebar { width: 200px; }
+    .main { padding: 30px 24px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 650px) {
+    .sidebar { display: none; }
+    .main { padding: 24px 16px; }
+    .stats-grid, .info-grid { grid-template-columns: 1fr; }
+}
+/* =========================================
+   PHASE 3 - WASTE SCORE ANALYSIS
+   ========================================= */
+
+.resource-row {
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.resource-row:hover {
+    background: rgba(124, 140, 255, 0.06);
+}
+
+
+.table-score {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.table-score strong {
+    min-width: 34px;
+}
+
+
+.mini-progress {
+    width: 70px;
+    height: 5px;
+
+    background: #202a42;
+
+    border-radius: 999px;
+
+    overflow: hidden;
+}
+
+.mini-progress div {
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #36d399,
+        #f6c85f,
+        #ff6b7a
+    );
+
+    border-radius: 999px;
+}
+
+
+.activity-badge,
+.risk-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px 10px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .3px;
+}
+
+
+.activity-badge.high {
+    color: #8ce9c0;
+    background: #123328;
+}
+
+
+.activity-badge.medium {
+    color: #f2ce6b;
+    background: #332d16;
+}
+
+
+.activity-badge.low {
+    color: #f2ce6b;
+    background: #332d16;
+}
+
+
+.risk-badge.low {
+    color: #7ce0b5;
+    background: #123328;
+}
+
+
+.risk-badge.medium {
+    color: #f2ce6b;
+    background: #332d16;
+}
+
+
+.risk-badge.high {
+    color: #ffb3bd;
+    background: #3a1820;
+}
+
+
+.risk-badge.critical {
+    color: #ff8f9d;
+    background: #4a1620;
+}
+
+
+/* Analysis section */
+
+.analysis-section {
+
+    margin-top: 20px;
+
+    background:
+        rgba(17, 24, 42, .78);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+}
+
+
+.analysis-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+}
+
+
+.analysis-header h2 {
+
+    margin: 0;
+
+    font-size: 18px;
+
+}
+
+
+#selected-resource-name {
+
+    color: var(--accent);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+/* Analysis grid */
+
+.analysis-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        0.8fr
+        1.5fr;
+
+    gap: 18px;
+
+}
+
+
+/* Score card */
+
+.score-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(124, 140, 255, .13),
+            rgba(17, 24, 42, .8)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 26px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+}
+
+
+.score-title {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+.score-number {
+
+    margin-top: 8px;
+
+    font-size: 58px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: -3px;
+
+}
+
+
+.risk-label {
+
+    width: fit-content;
+
+    margin-top: 14px;
+
+    padding: 7px 12px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+}
+
+
+.risk-label.low {
+
+    color: #7ce0b5;
+
+    background: #123328;
+
+}
+
+
+.risk-label.medium {
+
+    color: #f2ce6b;
+
+    background: #332d16;
+
+}
+
+
+.risk-label.high {
+
+    color: #ffb3bd;
+
+    background: #3a1820;
+
+}
+
+
+.risk-label.critical {
+
+    color: #ff8f9d;
+
+    background: #4a1620;
+
+}
+
+
+.score-description {
+
+    margin-top: 18px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+
+/* Breakdown */
+
+.breakdown-card {
+
+    background:
+        rgba(12, 18, 32, .65);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    padding: 24px;
+
+}
+
+
+.breakdown-title {
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    margin-bottom: 22px;
+
+}
+
+
+.breakdown-item {
+
+    margin-bottom: 20px;
+
+}
+
+
+.breakdown-label {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 8px;
+
+}
+
+
+.breakdown-label span {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+.breakdown-label strong {
+
+    font-size: 12px;
+
+}
+
+
+.progress {
+
+    height: 8px;
+
+    background: #202a42;
+
+    border-radius: 999px;
+
+    overflow: hidden;
+
+}
+
+
+.progress-fill {
+
+    height: 100%;
+
+    width: 0;
+
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7c8cff,
+            #9b7cff
+        );
+
+    transition:
+        width .5s ease;
+
+}
+
+
+@media (max-width: 850px) {
+
+    .analysis-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+/* =========================================
+   PHASE 4 - RESOURCE CLASSIFICATION
+   ========================================= */
+
+.classification-badge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 6px 11px;
+
+    border-radius: 999px;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    letter-spacing: .4px;
+
+    white-space: nowrap;
+}
+
+
+.classification-badge.active {
+
+    color: #7ce0b5;
+
+    background: #123328;
+}
+
+
+.classification-badge.monitor {
+
+    color: #9eb0ff;
+
+    background: #20294a;
+}
+
+
+.classification-badge.underutilized {
+
+    color: #f2ce6b;
+
+    background: #332d16;
+}
+
+
+.classification-badge.high-risk {
+
+    color: #ff9eaa;
+
+    background: #3a1820;
+}
+
+
+.risk-label.active {
+
+    color: #7ce0b5;
+
+    background: #123328;
+}
+
+
+.risk-label.monitor {
+
+    color: #9eb0ff;
+
+    background: #20294a;
+}
+
+
+.risk-label.underutilized {
+
+    color: #f2ce6b;
+
+    background: #332d16;
+}
+
+
+.risk-label.high-risk {
+
+    color: #ff9eaa;
+
+    background: #3a1820;
+}
+
+
+.classification-description {
+
+    margin: 16px 0 0;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    max-width: 420px;
+}
+/* =========================================
+   STEP 5B - RECOMMENDATION UI
+   ========================================= */
+
+.recommendation-section {
+
+    margin-top: 24px;
+
+    padding: 24px;
+
+    background:
+        rgba(17, 24, 42, .78);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+}
+
+
+.recommendation-priority {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 7px 12px;
+
+    border-radius: 999px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: .5px;
+
+    background: #20294a;
+
+    color: #9eb0ff;
+
+}
+
+
+.recommendation-priority.low {
+
+    background: #123328;
+
+    color: #7ce0b5;
+
+}
+
+
+.recommendation-priority.medium {
+
+    background: #20294a;
+
+    color: #9eb0ff;
+
+}
+
+
+.recommendation-priority.high {
+
+    background: #332d16;
+
+    color: #f2ce6b;
+
+}
+
+
+.recommendation-priority.critical {
+
+    background: #3a1820;
+
+    color: #ff9eaa;
+
+}
+
+
+.recommendation-card {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 20px;
+
+    margin-top: 20px;
+
+    padding: 24px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    background: rgba(255, 255, 255, .02);
+
+}
+
+
+.recommendation-icon {
+
+    width: 46px;
+
+    height: 46px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #20294a;
+
+    color: #9eb0ff;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+}
+
+
+.recommendation-content {
+
+    flex: 1;
+
+}
+
+
+.recommendation-title {
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: var(--text);
+
+}
+
+
+.recommendation-action {
+
+    margin: 8px 0 20px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+
+.recommendation-reason {
+
+    padding-top: 16px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+.recommendation-reason span {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .7px;
+
+    text-transform: uppercase;
+
+}
+
+
+.recommendation-reason p {
+
+    margin: 0;
+
+    color: var(--text);
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+}
+
+
+@media (max-width: 650px) {
+
+    .recommendation-card {
+
+        flex-direction: column;
+
+    }
+
+}
+/* =========================================
+   STEP 6B - HISTORICAL TRENDS
+   ========================================= */
+
+.history-section {
+
+    margin-top: 24px;
+
+    padding: 24px;
+
+    background:
+        rgba(17, 24, 42, .78);
+
+    border: 1px solid var(--border);
+
+    border-radius: 16px;
+
+}
+
+
+.history-controls {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.history-controls label {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+
+.history-controls select {
+
+    min-width: 180px;
+
+    padding: 9px 12px;
+
+    border-radius: 9px;
+
+    border: 1px solid var(--border);
+
+    background: var(--surface-2);
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    outline: none;
+
+}
+
+
+.history-controls select:focus {
+
+    border-color: var(--accent);
+
+}
+
+
+.history-summary {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+    margin-top: 20px;
+
+}
+
+
+.history-stat {
+
+    padding: 18px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background:
+        rgba(12, 18, 32, .65);
+
+}
+
+
+.history-stat span {
+
+    display: block;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: .6px;
+
+    text-transform: uppercase;
+
+}
+
+
+.history-stat strong {
+
+    display: block;
+
+    margin-top: 9px;
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    line-height: 1.4;
+
+}
+
+
+.trend-card {
+
+    margin-top: 18px;
+
+    padding: 22px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    background:
+        rgba(12, 18, 32, .65);
+
+}
+
+
+.trend-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+
+}
+
+
+.trend-header h3 {
+
+    margin: 0;
+
+    font-size: 15px;
+
+}
+
+
+.trend-header p {
+
+    margin: 5px 0 0;
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+.chart-container {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 280px;
+
+}
+
+
+.chart-container canvas {
+
+    width: 100% !important;
+
+    height: 100% !important;
+
+}
+
+
+.history-empty {
+
+    text-align: center;
+
+    padding: 40px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+@media (max-width: 900px) {
+
+    .history-summary {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .history-controls {
+
+        margin-top: 15px;
+
+        width: 100%;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+    }
+
+
+    .history-controls select {
+
+        width: 100%;
+
+    }
+
+
+    .history-summary {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .chart-container {
+
+        height: 230px;
+
+    }
+
+}
+/* =========================================
+   PHASE 7A - INTERACTIVE NAVIGATION
+   ========================================= */
+
+.dashboard-section {
+    scroll-margin-top: 24px;
+}
+
+.nav-item {
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.nav-item:hover {
+    transform: translateX(3px);
+}
+
+.nav-item.active {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(124, 140, 255, 0.16),
+            rgba(124, 140, 255, 0.05)
+        );
+
+    color: var(--text);
+
+    border-left: 3px solid var(--accent);
+
+    padding-left: 11px;
+}
+
+.section-hidden {
+    display: none !important;
+}
+
+.section-visible {
+    display: block;
+}

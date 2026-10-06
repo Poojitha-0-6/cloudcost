@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+
+{% block title %}
+Resources | CloudCost Guardian
+{% endblock %}
+
+{% block content %}
+
+<div class="page-header">
+
+    <div>
+        <span class="eyebrow">RESOURCE MANAGEMENT</span>
+
+        <h1>Cloud Resources</h1>
+
+        <p>
+            Search, filter and inspect monitored cloud resources.
+        </p>
+    </div>
+
+    <div class="monitoring-status">
+        <span class="status-dot"></span>
+        Monitoring active
+    </div>
+
+</div>
+
+
+<!-- RESOURCE SUMMARY -->
+
+<div class="resource-summary">
+
+    <div class="resource-stat-card">
+
+        <div class="stat-card-icon">
+            #
+        </div>
+
+        <div>
+            <span>Total</span>
+            <strong id="resourceTotal">--</strong>
+            <small>Monitored resources</small>
+        </div>
+
+    </div>
+
+
+    <div class="resource-stat-card">
+
+        <div class="stat-card-icon success">
+            ✓
+        </div>
+
+        <div>
+            <span>Active</span>
+            <strong id="resourceActive">--</strong>
+            <small>Healthy utilization</small>
+        </div>
+
+    </div>
+
+
+    <div class="resource-stat-card">
+
+        <div class="stat-card-icon warning">
+            !
+        </div>
+
+        <div>
+            <span>Underutilized</span>
+            <strong id="resourceUnderutilized">--</strong>
+            <small>Optimization candidates</small>
+        </div>
+
+    </div>
+
+
+    <div class="resource-stat-card">
+
+        <div class="stat-card-icon danger">
+            !
+        </div>
+
+        <div>
+            <span>High Risk</span>
+            <strong id="resourceHighRisk">--</strong>
+            <small>Requires investigation</small>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- RESOURCE CONTROLS -->
+
+<div class="resource-toolbar">
+
+    <div class="resource-search">
+
+        <span class="search-icon">⌕</span>
+
+        <input
+            id="resourceSearch"
+            type="text"
+            placeholder="Search by resource ID or region..."
+            oninput="filterResources()"
+        >
+
+    </div>
+
+
+    <select
+        id="resourceFilter"
+        onchange="filterResources()"
+        class="resource-select"
+    >
+
+        <option value="ALL">
+            All classifications
+        </option>
+
+        <option value="ACTIVE">
+            Active
+        </option>
+
+        <option value="MONITOR">
+            Monitor
+        </option>
+
+        <option value="UNDERUTILIZED">
+            Underutilized
+        </option>
+
+        <option value="HIGH WASTE RISK">
+            High Waste Risk
+        </option>
+
+    </select>
+
+
+    <select
+        id="resourceSort"
+        onchange="filterResources()"
+        class="resource-select"
+    >
+
+        <option value="score">
+            Waste Score ↓
+        </option>
+
+        <option value="cpu">
+            CPU ↓
+        </option>
+
+        <option value="runtime">
+            Runtime ↓
+        </option>
+
+    </select>
+
+
+    <button
+        class="page-button primary"
+        onclick="loadResourcesPage()"
+    >
+        ↻ Refresh
+    </button>
+
+</div>
+
+
+<!-- RESOURCE TABLE -->
+
+<section class="resource-inventory">
+
+    <div class="inventory-header">
+
+        <div>
+
+            <span class="eyebrow">
+                MONITORED INVENTORY
+            </span>
+
+            <h2>Resource List</h2>
+
+            <p>
+                Click a resource to inspect its detailed analysis.
+            </p>
+
+        </div>
+
+        <span class="inventory-count">
+            Live analysis
+        </span>
+
+    </div>
+
+
+    <div class="resource-table-wrapper">
+
+        <table class="resource-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Resource</th>
+
+                    <th>Region</th>
+
+                    <th>State</th>
+
+                    <th>CPU</th>
+
+                    <th>Network</th>
+
+                    <th>Activity</th>
+
+                    <th>Waste Score</th>
+
+                    <th>Classification</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="resourceTableBody">
+
+                <tr>
+
+                    <td
+                        colspan="8"
+                        class="resource-loading"
+                    >
+                        Loading resources...
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- EXPLANATION -->
+
+<div class="resource-help-panel">
+
+    <div class="help-icon">
+        i
+    </div>
+
+    <div>
+
+        <h3>
+            How CloudCost Guardian evaluates resources
+        </h3>
+
+        <p>
+            Each resource is evaluated using CPU utilization,
+            network activity, application activity and running time.
+            These signals are combined into a Waste Score that helps
+            prioritize optimization review.
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}
